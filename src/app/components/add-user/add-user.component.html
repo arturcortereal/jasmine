@@ -1,0 +1,31 @@
+<div>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <p>
+      <mat-form-field appearance="standard" >
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="username">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-hint>Your username</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint>Your email address</mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="phone">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-stroked-button color="primary" type="submit">Save</button>
+  </form>
+</div>
