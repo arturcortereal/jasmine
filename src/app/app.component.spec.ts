@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -87,6 +87,7 @@ describe('AppComponent', () => {
       // Assert
       expect(service.getUsers).toHaveBeenCalled();
       expect(component.dataSource).toEqual(mockUsersList);
+
     });
 
     it(`should call getUsers function with an error`, () => {
@@ -100,7 +101,23 @@ describe('AppComponent', () => {
       // Assert
       expect(service.getUsers).toHaveBeenCalled();
       expect(component.showErrorMessage).toHaveBeenCalled();
+
     });
+
+    it(`should call getUsers function with success (ASYNC)`, waitForAsync(() => {
+      // Arrange
+      spyOn(service, 'getUsers').and.returnValue(of(mockUsersList));
+
+      // Act
+      component.getUsers();
+
+      fixture.whenStable().then(() => {
+        expect(component.dataSource).toEqual(mockUsersList);
+      });
+
+
+    }));
+
   });
 
   it(`should multiply values`, () => {
