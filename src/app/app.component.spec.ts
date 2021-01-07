@@ -17,21 +17,6 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
 
-  let mockUsersList = [
-    {
-      id: 1,
-      username: 'Bret',
-      email: 'Sincere@april.biz',
-      phone: '1-770-736-8031 x56442',
-    },
-    {
-      id: 2,
-      username: 'Antonette',
-      email: 'Shanna@melissa.tv',
-      phone: '1-770-736-8031 x56442',
-    },
-  ];
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
@@ -56,6 +41,10 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
   });
 
+  beforeAll( () => {
+
+  })
+
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
@@ -76,6 +65,20 @@ describe('AppComponent', () => {
   });
 
   describe('getUsers', () => {
+    let mockUsersList = [
+      {
+        id: 1,
+        username: 'Bret',
+        email: 'Sincere@april.biz',
+        phone: '1-770-736-8031 x56442',
+      },
+      {
+        id: 2,
+        username: 'Antonette',
+        email: 'Shanna@melissa.tv',
+        phone: '1-770-736-8031 x56442',
+      },
+    ];
     it(`should call getUsers function with success`, () => {
       // Arrange
       spyOn(service, 'getUsers').and.returnValue(of(mockUsersList));
@@ -111,16 +114,13 @@ describe('AppComponent', () => {
       // Act
       component.getUsers();
 
-      // Arrange
+      // Assert
       // whenStable waits for all tasks in the test NgZone to complete
       // It only works if waitForAsync is defined
       fixture.whenStable().then(() => {
         expect(component.dataSource).toEqual(mockUsersList);
       });
-
-
     }));
-
   });
 
   it(`should multiply values`, () => {
