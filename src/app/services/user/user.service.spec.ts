@@ -51,7 +51,7 @@ describe('UserService', () => {
       usersListResponse = response;
     });
 
-    // To set the response we just need to call flush,¢
+    // To set the response we just need to call flush,
     // which converts the given object to JSON format by default
     const request = http.expectOne(
       'https://jsonplaceholder.typicode.com/users'

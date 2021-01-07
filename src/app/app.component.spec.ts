@@ -72,7 +72,6 @@ describe('AppComponent', () => {
     component.ngOnInit();
 
     // Assert
-    expect(component.isLoading).toEqual(true);
     expect(component.getUsers).toHaveBeenCalled();
   });
 
@@ -87,6 +86,7 @@ describe('AppComponent', () => {
       // Assert
       expect(service.getUsers).toHaveBeenCalled();
       expect(component.dataSource).toEqual(mockUsersList);
+      expect(component.isLoading).toEqual(false);
 
     });
 
@@ -111,6 +111,8 @@ describe('AppComponent', () => {
       // Act
       component.getUsers();
 
+      // whenStable waits for all tasks in the test NgZone to complete
+      // It only works if waitForAsync is defined
       fixture.whenStable().then(() => {
         expect(component.dataSource).toEqual(mockUsersList);
       });
