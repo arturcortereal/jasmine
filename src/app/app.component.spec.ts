@@ -111,6 +111,7 @@ describe('AppComponent', () => {
       // Act
       component.getUsers();
 
+      // Arrange
       // whenStable waits for all tasks in the test NgZone to complete
       // It only works if waitForAsync is defined
       fixture.whenStable().then(() => {
